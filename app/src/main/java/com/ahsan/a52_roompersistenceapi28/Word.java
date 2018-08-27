@@ -6,6 +6,8 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.io.Serializable;
+
 /**
  * A basic class representing an entity that is a row in a one-column database table.
  *
@@ -18,7 +20,7 @@ import android.support.annotation.Nullable;
  */
 
 @Entity(tableName = "word_table")
-public class Word {
+public class Word implements Serializable{
 
     @PrimaryKey
     @NonNull

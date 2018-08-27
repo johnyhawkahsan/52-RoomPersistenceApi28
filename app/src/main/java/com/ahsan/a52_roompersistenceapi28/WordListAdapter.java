@@ -1,6 +1,9 @@
 package com.ahsan.a52_roompersistenceapi28;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +19,11 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     private final LayoutInflater mInflator;
     private List<Word> mWords; // Caches copy of words
     private int mSelectedItemIndex;
+    Context mContext;
 
     //Constructor for WordListAdapter
     WordListAdapter(Context context){
+        mContext = context;
         mInflator = LayoutInflater.from(context);
     }
 
@@ -43,6 +48,12 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
                     Word word = mWords.get(mSelectedItemIndex);
                     Log.d(TAG, "onClick: Selected item name = " + word.getFirst());
 
+                    //Launch ViewDataDialog and send intent data to ViewDataDialog
+                    ViewDataDialog viewDataDialog = new ViewDataDialog();
+                    Bundle args = new Bundle();
+                    args.putSerializable("data", word);
+                    viewDataDialog.setArguments(args);
+                    viewDataDialog.show(((MainActivity)mContext).getSupportFragmentManager() ,  "Data Dialog");
                 }
             });
         }
