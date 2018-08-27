@@ -80,11 +80,14 @@ public class MainActivity extends AppCompatActivity {
         {
             Log.d(TAG, "onActivityResult: resultCode == RESULT_OK = " + RESULT_OK);
 
-            Word word = new Word(data.getStringExtra(NewWordActivity.FIRST_NAME),
+            Word word = new Word(
+                                data.getStringExtra(NewWordActivity.EMPLOYEE_ID),
+                                data.getStringExtra(NewWordActivity.FIRST_NAME),
                                 data.getStringExtra(NewWordActivity.LAST_NAME),
                                 data.getStringExtra(NewWordActivity.TITLE),
                                 data.getStringExtra(NewWordActivity.DEPARTMENT));
-            mWordViewModel.insert(word);
+
+            mWordViewModel.insert(word);//Insert this new word to our Database
 
         } else {
             Toast.makeText(this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();

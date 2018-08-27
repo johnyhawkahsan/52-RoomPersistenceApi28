@@ -2,6 +2,7 @@ package com.ahsan.a52_roompersistenceapi28;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import java.util.List;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
 
+    private static final String TAG = "WordListAdapter";
     private final LayoutInflater mInflator;
     private List<Word> mWords; // Caches copy of words
+    private int mSelectedItemIndex;
 
     //Constructor for WordListAdapter
     WordListAdapter(Context context){
@@ -23,13 +26,25 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     //WordViewHolder class
     class WordViewHolder extends RecyclerView.ViewHolder{
 
-        private final TextView name, designation, employeeDepartment;
+        private final TextView employeeId, name, designation, employeeDepartment;
 
         public WordViewHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
-            designation = (TextView) itemView.findViewById(R.id.designation);
-            employeeDepartment = (TextView) itemView.findViewById(R.id.employeeDepartment);
+            employeeId = itemView.findViewById(R.id.employee_id);
+            name = itemView.findViewById(R.id.name);
+            designation = itemView.findViewById(R.id.designation);
+            employeeDepartment = itemView.findViewById(R.id.employeeDepartment);
+
+            //Setting on click method for our list item
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mSelectedItemIndex = getAdapterPosition();
+                    Word word = mWords.get(mSelectedItemIndex);
+                    Log.d(TAG, "onClick: Selected item name = " + word.getFirst());
+
+                }
+            });
         }
     }
 
@@ -44,11 +59,13 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     public void onBindViewHolder(WordViewHolder holder, int position) {
         if (mWords != null){
             Word current = mWords.get(position); //get current item
+            holder.employeeId.setText(current.getId());
             holder.name.setText(current.getFirst() + " " + current.getLast());
             holder.designation.setText(current.getTitle());
             holder.employeeDepartment.setText(current.getDepartment());
         } else {
             // Covers the case of data not being ready yet.
+            holder.employeeId.setText("No id");
             holder.name.setText("No name");
             holder.designation.setText("No designation");
             holder.employeeDepartment.setText("No employeeDepartment");
@@ -56,6 +73,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
 
     }
 
+    //This method is called when new data is added, so it updates our database.
     void setWords(List<Word> words){
         mWords = words;
         notifyDataSetChanged();

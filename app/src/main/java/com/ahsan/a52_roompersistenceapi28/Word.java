@@ -22,6 +22,10 @@ public class Word {
 
     @PrimaryKey
     @NonNull
+    @ColumnInfo(name = "employee_id")
+    private String id;
+
+    @Nullable
     @ColumnInfo(name = "firstname")
     private String first;
 
@@ -39,13 +43,22 @@ public class Word {
     private String department;
 
 
-    public Word(@NonNull String first, String last, String title, String department) {
+    public Word(@NonNull String id,String first, String last, String title, String department) {
+        this.id = id;
         this.first = first;
         this.last = last;
         this.title = title;
         this.department = department;
     }
 
+    @NonNull
+    public String getId() {
+        return id;
+    }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
 
     @Nullable
     public String getFirst() {

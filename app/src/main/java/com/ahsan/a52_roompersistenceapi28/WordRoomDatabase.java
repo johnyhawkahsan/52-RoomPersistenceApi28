@@ -20,6 +20,7 @@ public abstract class WordRoomDatabase extends RoomDatabase{
     //We only need one instance of this class, so we make it singleton
     private static WordRoomDatabase INSTANCE;
 
+    //Singleton pattern method
     public static WordRoomDatabase getDatabase (final Context context){
         if (INSTANCE == null){
             synchronized (WordRoomDatabase.class){
@@ -74,7 +75,7 @@ public abstract class WordRoomDatabase extends RoomDatabase{
             mDao.deleteAll();
 
             //These are the initial words for our app, because above deleteAll method deletes all the data at each exit.
-            Word word = new Word("Ahsan", "Taqveem", "Android Developer", "Software Development");
+            Word word = new Word("1","Ahsan", "Taqveem", "Android Developer", "Software Development");
             mDao.insert(word);
             return null;
         }
