@@ -22,10 +22,10 @@ import java.io.Serializable;
 @Entity(tableName = "word_table")
 public class Word implements Serializable{
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "employee_id")
-    private String id;
+    private int id;
 
     @Nullable
     @ColumnInfo(name = "firstname")
@@ -45,7 +45,7 @@ public class Word implements Serializable{
     private String department;
 
 
-    public Word(@NonNull String id,String first, String last, String title, String department) {
+    public Word(@NonNull int id,String first, String last, String title, String department) {
         this.id = id;
         this.first = first;
         this.last = last;
@@ -54,11 +54,11 @@ public class Word implements Serializable{
     }
 
     @NonNull
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(@NonNull String id) {
+    public void setId(@NonNull int id) {
         this.id = id;
     }
 

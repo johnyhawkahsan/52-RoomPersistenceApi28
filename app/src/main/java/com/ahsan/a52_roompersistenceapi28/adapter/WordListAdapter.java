@@ -73,7 +73,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     public void onBindViewHolder(WordViewHolder holder, int position) {
         if (mWords != null){
             Word current = mWords.get(position); //get current item
-            holder.employeeId.setText(current.getId());
+            holder.employeeId.setText(String.valueOf(current.getId()));
             holder.name.setText(current.getFirst() + " " + current.getLast());
             holder.designation.setText(current.getTitle());
             holder.employeeDepartment.setText(current.getDepartment());

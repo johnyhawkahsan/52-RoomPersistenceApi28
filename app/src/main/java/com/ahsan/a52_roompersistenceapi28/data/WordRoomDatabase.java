@@ -14,8 +14,9 @@ import android.util.Log;
  * The fact that this has very few comments emphasizes its coolness.
  */
 
-@Database(entities = {Word.class}, version = 1)
+@Database(entities = {Word.class}, version = 2, exportSchema = false)
 public abstract class WordRoomDatabase extends RoomDatabase{
+
     private static final String TAG = WordRoomDatabase.class.getSimpleName();
     public abstract WordDao wordDao();
 
@@ -77,7 +78,7 @@ public abstract class WordRoomDatabase extends RoomDatabase{
             mDao.deleteAll();
 
             //These are the initial words for our app, because above deleteAll method deletes all the data at each exit.
-            Word word = new Word("1","Ahsan", "Taqveem", "Android Developer", "Software Development");
+            Word word = new Word(1,"Ahsan", "Taqveem", "Android Developer", "Software Development");
             mDao.insert(word);
             return null;
         }

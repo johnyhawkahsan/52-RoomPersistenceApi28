@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onActivityResult: resultCode == RESULT_OK = " + RESULT_OK);
 
             Word word = new Word(
-                                data.getStringExtra(NewWordActivity.EMPLOYEE_ID),
+                                Integer.parseInt(data.getStringExtra(NewWordActivity.EMPLOYEE_ID)),
                                 data.getStringExtra(NewWordActivity.FIRST_NAME),
                                 data.getStringExtra(NewWordActivity.LAST_NAME),
                                 data.getStringExtra(NewWordActivity.TITLE),
