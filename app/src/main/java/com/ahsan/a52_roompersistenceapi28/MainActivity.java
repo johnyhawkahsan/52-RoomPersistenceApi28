@@ -21,6 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ahsan.a52_roompersistenceapi28.adapter.WordListAdapter;
+import com.ahsan.a52_roompersistenceapi28.data.Word;
+import com.ahsan.a52_roompersistenceapi28.data.WordViewModel;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -86,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
                                 data.getStringExtra(NewWordActivity.LAST_NAME),
                                 data.getStringExtra(NewWordActivity.TITLE),
                                 data.getStringExtra(NewWordActivity.DEPARTMENT));
+
+            Log.d(TAG, "onActivityResult: new added word, ID = "
+                    + word.getId() + ", Name = " + word.getFirst() + " " + word.getLast() + ", title = " + word.getTitle() + ", department = " + word.getDepartment());
 
             mWordViewModel.insert(word);//Insert this new word to our Database
 

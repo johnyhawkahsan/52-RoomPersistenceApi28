@@ -1,15 +1,18 @@
-package com.ahsan.a52_roompersistenceapi28;
+package com.ahsan.a52_roompersistenceapi28.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ahsan.a52_roompersistenceapi28.MainActivity;
+import com.ahsan.a52_roompersistenceapi28.R;
+import com.ahsan.a52_roompersistenceapi28.ViewDataDialog;
+import com.ahsan.a52_roompersistenceapi28.data.Word;
 
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     Context mContext;
 
     //Constructor for WordListAdapter
-    WordListAdapter(Context context){
+    public WordListAdapter(Context context){
         mContext = context;
         mInflator = LayoutInflater.from(context);
     }
@@ -85,7 +88,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     }
 
     //This method is called when new data is added, so it updates our database.
-    void setWords(List<Word> words){
+    public void setWords(List<Word> words){
         mWords = words;
         notifyDataSetChanged();
     }

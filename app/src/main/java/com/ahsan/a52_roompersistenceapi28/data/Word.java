@@ -1,4 +1,4 @@
-package com.ahsan.a52_roompersistenceapi28;
+package com.ahsan.a52_roompersistenceapi28.data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

@@ -1,4 +1,4 @@
-package com.ahsan.a52_roompersistenceapi28;
+package com.ahsan.a52_roompersistenceapi28.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

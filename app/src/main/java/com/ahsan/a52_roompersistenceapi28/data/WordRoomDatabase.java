@@ -1,4 +1,4 @@
-package com.ahsan.a52_roompersistenceapi28;
+package com.ahsan.a52_roompersistenceapi28.data;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -7,6 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 /**
  * This is the backend. The database. This used to be done by the OpenHelper.
@@ -15,6 +16,7 @@ import android.support.annotation.NonNull;
 
 @Database(entities = {Word.class}, version = 1)
 public abstract class WordRoomDatabase extends RoomDatabase{
+    private static final String TAG = WordRoomDatabase.class.getSimpleName();
     public abstract WordDao wordDao();
 
     //We only need one instance of this class, so we make it singleton
@@ -23,6 +25,7 @@ public abstract class WordRoomDatabase extends RoomDatabase{
     //Singleton pattern method
     public static WordRoomDatabase getDatabase (final Context context){
         if (INSTANCE == null){
+            Log.d(TAG, "getDatabase: INSTANCE == null, Build new Database INSTANCE");
             synchronized (WordRoomDatabase.class){
                 if (INSTANCE == null){
                     //create database here
@@ -70,8 +73,7 @@ public abstract class WordRoomDatabase extends RoomDatabase{
 
         @Override
         protected Void doInBackground(final Void... params) {
-            // Start the app with a clean database every time.
-            // Not needed if you only populate on creation.
+            // Start the app with a clean database every time. Not needed if you only populate on creation.
             mDao.deleteAll();
 
             //These are the initial words for our app, because above deleteAll method deletes all the data at each exit.

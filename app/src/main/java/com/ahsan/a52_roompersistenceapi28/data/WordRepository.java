@@ -1,4 +1,4 @@
-package com.ahsan.a52_roompersistenceapi28;
+package com.ahsan.a52_roompersistenceapi28.data;
 
 /*
 * A Repository is a class that abstracts access to multiple data sources.

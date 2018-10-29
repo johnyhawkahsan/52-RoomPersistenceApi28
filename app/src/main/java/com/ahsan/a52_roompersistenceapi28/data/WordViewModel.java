@@ -1,4 +1,4 @@
-package com.ahsan.a52_roompersistenceapi28;
+package com.ahsan.a52_roompersistenceapi28.data;
 
 
 import android.app.Application;
@@ -31,7 +31,7 @@ public class WordViewModel extends AndroidViewModel{
     }
 
     //Getter method for getting all words.
-    LiveData<List<Word>> getAllWords(){
+    public LiveData<List<Word>> getAllWords(){
         return mAllWords;
     }
 
